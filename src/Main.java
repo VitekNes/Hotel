@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,9 @@ public class Main {
         guest2.setBirthDate(LocalDate.of(1995, 4, 5));
         System.out.println(guest2.getFirstName() + " " + guest2.getLastName() + " (" + guest2.getBirthDate() + ")");
 
-        Room room1 = new Room(1, 1, true, true, 1000);
-        Room room2 = new Room(2, 1, true, true, 1000);
-        Room room3 = new Room(3, 3, false, true, 2400);
+        Room room1 = new Room(1, 1, true, true, new BigDecimal(1000));
+        Room room2 = new Room(2, 1, true, true, new BigDecimal(1000));
+        Room room3 = new Room(3, 3, false, true, new BigDecimal(2400));
 
         List<Guest> list1 = new ArrayList<>();
         list1.add(guest1);
