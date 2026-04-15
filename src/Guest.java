@@ -11,6 +11,13 @@ public class Guest {
         this.birthDate = birthDate;
     }
 
+    public Guest(String firstName, String lastName) {
+        this(firstName, lastName, LocalDate.now());
+    }
+    public Guest() {
+        this("Anonimous", "Person", LocalDate.now());
+    }
+
     public String getFirstName() {
         return firstName;
     }
