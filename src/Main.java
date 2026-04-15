@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        BookingManager manager = new BookingManager();
+
         Guest guest1 = new Guest("Adéla", "Malíkova", LocalDate.of(1993, 3, 13));
         Guest guest2 = new Guest("Jan", "Dvořaček", LocalDate.of(1995, 5, 5));
         guest2.setBirthDate(LocalDate.of(1995, 4, 5));
