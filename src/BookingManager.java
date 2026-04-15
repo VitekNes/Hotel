@@ -9,15 +9,19 @@ public class BookingManager {
     public void addBooking(Booking booking){
         bookingList.add(booking);
     }
+
     public Booking getBooking(int index){
         return bookingList.get(index);
     }
+
     public List<Booking> getBookings(){
         return bookingList;
     }
+
     public void clearBookings(){
         bookingList.clear();
     }
+
     //statistic functions
     public int getNumberOfWorkingBookings(){
         int count = 0;
@@ -28,6 +32,7 @@ public class BookingManager {
         }
         return count;
     }
+
     public double getAverageGuests(){
         int count = 0;
         for(Booking booking : bookingList){
@@ -35,6 +40,7 @@ public class BookingManager {
         }
         return (double) count/bookingList.size();
     }
+
     public List<Booking> getTopHolidayBookings(int ammount){
         List<Booking> temp = new ArrayList<>();
         int i = 0;
@@ -46,6 +52,7 @@ public class BookingManager {
         }
         return temp;
     }
+
     public void printGuestStatistics(){
         int singleBooking = 0;
         int doubleBooking = 0;
@@ -59,8 +66,8 @@ public class BookingManager {
                 multiBooking += 1;
             }
         }
-        System.out.println("Rezervace s jednime hostem: " + singleBooking);
-        System.out.println("Rezervace se dvema hosty: " + doubleBooking);
-        System.out.println("Rezervace s vice hosty: " + multiBooking);
+        System.out.println("Rezervace s jedním hostem: " + singleBooking);
+        System.out.println("Rezervace se dvěma hosty: " + doubleBooking);
+        System.out.println("Rezervace s více hosty: " + multiBooking);
     }
 }

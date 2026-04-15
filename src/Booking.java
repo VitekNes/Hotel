@@ -1,4 +1,7 @@
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Booking {
@@ -22,7 +25,7 @@ public class Booking {
     public Booking(List<Guest> guestList, Room room) {
         this(guestList, room, LocalDate.now(),LocalDate.now().plusDays(6));
     }
-
+    //work functions
     public List<Guest> getGuestList() {
         return guestList;
     }
@@ -61,5 +64,17 @@ public class Booking {
 
     public void setWorkVacation(boolean workVacation) {
         isWorkVacation = workVacation;
+    }
+    //statistic functions
+    public Long getBookingLenght(){
+        return Duration.between(arrivalDate, departureDate).toDays();
+    }
+
+    public BigDecimal getTotalPrice(){
+        return room.getPrice().multiply(BigDecimal.valueOf(Duration.between(arrivalDate, departureDate).toDays()));
+    }
+
+    public String getFormatedSummary(){
+        return arrivalDate.format(DateTimeFormatter.ofPattern("d. M. YYYY"))+ " až " +departureDate.format(DateTimeFormatter.ofPattern("d. M. YYYY"))+ ": " +guestList.getFirst().getFirstName()+ " " +guestList.getFirst().getLastName()+ " (" +guestList.getFirst().getBirthDate().format(DateTimeFormatter.ofPattern("d. M. YYYY"))+ ")[" +guestList.size()+ ", " +room.isSeaview()+ "] za " +room.getPrice().multiply(BigDecimal.valueOf(Duration.between(arrivalDate, departureDate).toDays()))+ "Kč.";
     }
 }
