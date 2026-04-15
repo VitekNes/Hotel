@@ -53,6 +53,11 @@ public class BookingManager {
         return temp;
     }
 
+    public List<Booking> getTopHolidayBookings(){
+        return this.getTopHolidayBookings(8);
+    }
+
+
     public void printGuestStatistics(){
         int singleBooking = 0;
         int doubleBooking = 0;

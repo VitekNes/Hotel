@@ -5,7 +5,24 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        fillBookings();
+        BookingManager manager = fillBookings();
+
+        System.out.println("Počet pracovních pobytů: " +manager.getNumberOfWorkingBookings()+"\n");
+        System.out.println("Průměrný počet hostů na rezervaci: "+manager.getAverageGuests()+"\n");
+
+        List<Booking> topHolidayBookings= manager.getTopHolidayBookings();
+        System.out.println("Prvních osm rekreačních rezervací:");
+        for(Booking booking : topHolidayBookings){
+            System.out.println("Rezervace pro: " +booking.getGuestList().getFirst().getFirstName()+ " " +booking.getGuestList().getFirst().getLastName()+ " (" +booking.getGuestList().getFirst().getBirthDate()+ ") termín: " +booking.getArrivalDate()+ " - " +booking.getDepartureDate()+ " pracovní pobyt: " +(booking.isWorkVacation()?"ano":"ne"));
+        }
+        System.out.println("\nStatistiky hostů:");
+        manager.printGuestStatistics();
+
+        System.out.println("\nFormátovaný výpis všech rezervací v systému:");
+        for(Booking booking : manager.getBookings()){
+            System.out.println(booking.getFormatedSummary());
+        }
+
         /*BookingManager manager = new BookingManager();
 
         Guest guest1 = new Guest("Adéla", "Malíkova", LocalDate.of(1993, 3, 13));
@@ -42,7 +59,7 @@ public class Main {
         manager.printGuestStatistics();*/
     }
 
-    public static void fillBookings(){
+    public static BookingManager fillBookings(){
         BookingManager manager = new BookingManager();
 
         Guest guest1 = new Guest("Karel", "Dvořák", LocalDate.of(1990, 5, 15));
@@ -68,9 +85,10 @@ public class Main {
 
         for(int i = 0; i < 10; i++){
             List<Guest> tempList = new ArrayList<>();
-            tempList.add(new Guest());
+            tempList.add(guest3);
             manager.addBooking(new Booking(tempList, room2, LocalDate.of(2023, 8, (i*2)+1), LocalDate.of(2023, 8, (i+1)*2), false));
 
         }
+        return manager;
     }
 }
