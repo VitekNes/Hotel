@@ -26,16 +26,18 @@ public class Main {
         Booking booking2 = new Booking(list2, room3, LocalDate.of(2021, 9, 1), LocalDate.of(2021, 9, 14));
         Booking booking3 = new Booking(list2, room3);
 
-        List<Booking> bookings = new ArrayList<>();
-        bookings.add(booking1);
-        bookings.add(booking2);
-        bookings.add(booking3);
+        manager.addBooking(booking1);
+        manager.addBooking(booking2);
+        manager.addBooking(booking3);
 
-        for(Booking booking : bookings){
+        for(Booking booking : manager.getBookings()){
             System.out.println(booking.getRoom().getRoomNumber() +", "+ booking.getArrivalDate() +":"+ booking.getDepartureDate());
             for(Guest guest : booking.getGuestList()){
                 System.out.println(guest.getFirstName() + " " + guest.getLastName() + " (" + guest.getBirthDate() + ")");
             }
         }
+
+        System.out.println(manager.getAverageGuests());
+        manager.printGuestStatistics();
     }
 }
