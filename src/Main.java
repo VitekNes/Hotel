@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    private static BookingManager manager = new BookingManager();
+
     public static void main(String[] args) {
-        BookingManager manager = fillBookings();
+        fillBookings();
 
         System.out.println("Počet pracovních pobytů: " +manager.getNumberOfWorkingBookings()+"\n");
         System.out.println("Průměrný počet hostů na rezervaci: "+manager.getAverageGuests()+"\n");
@@ -59,8 +62,8 @@ public class Main {
         manager.printGuestStatistics();*/
     }
 
-    public static BookingManager fillBookings(){
-        BookingManager manager = new BookingManager();
+    private static void fillBookings(){
+        //BookingManager manager = new BookingManager();
 
         Guest guest1 = new Guest("Karel", "Dvořák", LocalDate.of(1990, 5, 15));
         Guest guest2 = new Guest("Karel", "Dvořák", LocalDate.of(1979, 1, 3));
@@ -70,18 +73,11 @@ public class Main {
         Room room2 = new Room(2, 1, true, true, new BigDecimal(1000));
         Room room3 = new Room(3, 3, false, true, new BigDecimal(2400));
 
-        List<Guest> list1 = new ArrayList<>();
-        list1.add(guest1);
-        manager.addBooking(new Booking(list1, room1, LocalDate.of(2023, 6, 1), LocalDate.of(2023, 6, 7), true));
+        manager.addBooking(new Booking(List.of(guest1), room1, LocalDate.of(2023, 6, 1), LocalDate.of(2023, 6, 7), true));
 
-        List<Guest> list2 = new ArrayList<>();
-        list2.add(guest2);
-        manager.addBooking(new Booking(list2, room2, LocalDate.of(2023, 7, 18), LocalDate.of(2023, 7, 21), false));
+        manager.addBooking(new Booking(List.of(guest2), room2, LocalDate.of(2023, 7, 18), LocalDate.of(2023, 7, 21), false));
 
-        List<Guest> list3 = new ArrayList<>();
-        list3.add(guest3);
-        list3.add(guest1);
-        manager.addBooking(new Booking(list3, room3, LocalDate.of(2023, 8, 1), LocalDate.of(2023, 8, 31), true));
+        manager.addBooking(new Booking(List.of(guest3, guest1), room3, LocalDate.of(2023, 8, 1), LocalDate.of(2023, 8, 31), true));
 
         for(int i = 0; i < 10; i++){
             List<Guest> tempList = new ArrayList<>();
@@ -89,6 +85,6 @@ public class Main {
             manager.addBooking(new Booking(tempList, room2, LocalDate.of(2023, 8, (i*2)+1), LocalDate.of(2023, 8, (i+1)*2), false));
 
         }
-        return manager;
+        //return manager;
     }
 }
